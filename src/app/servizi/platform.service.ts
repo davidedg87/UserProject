@@ -12,7 +12,7 @@ export class PlatformService {
 
   constructor(private deviceService: DeviceDetectorService){
 
-    this.isMobile =   this.deviceService.isMobile();
+    this.isMobile =   !this.deviceService.isMobile();
     this.isDesktop = !this.isMobile;
 
 
