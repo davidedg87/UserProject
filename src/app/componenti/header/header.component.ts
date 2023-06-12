@@ -10,9 +10,6 @@ export class HeaderComponent {
   public isMobile! : boolean;
   constructor(){  }
 
-
-
-
   ngOnInit() {
     this.checkWindowSize();
   }
