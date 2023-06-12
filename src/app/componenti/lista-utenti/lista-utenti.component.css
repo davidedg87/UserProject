@@ -1,8 +1,4 @@
+
 @import '~bootstrap/dist/css/bootstrap.css';
 
 
-.scrollable-container {
-  overflow-y: auto; /* Enable vertical scrollbar */
-  /* Add any other custom styles */
-  overflow-x: auto;
-}

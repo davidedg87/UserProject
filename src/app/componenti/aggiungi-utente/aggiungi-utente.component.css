@@ -9,13 +9,14 @@
 
 .form-field {
   flex: 1;
-  margin-right: 50px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .form-container {
   display: grid;
-  grid-template-rows: auto 1fr auto; /* Layout di griglia con tre righe: header, contenuto, azioni */
-  height: 100%; /* Assicurati che il contenitore abbia un'altezza definita */
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
   overflow-y: hidden;
 }
 
@@ -24,4 +25,5 @@
   display: flex;
   justify-content: flex-end; /* Allinea il pulsante a destra */
   margin-top: 16px; /* Aggiungi uno spazio sopra il pulsante */
+  margin-right: 10px;
 }
