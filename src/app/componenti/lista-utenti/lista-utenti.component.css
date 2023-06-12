@@ -1,10 +1,8 @@
+@import '~bootstrap/dist/css/bootstrap.css';
 
-table {
-  width: 100%;
+
+.scrollable-container {
+  overflow-y: auto; /* Enable vertical scrollbar */
+  /* Add any other custom styles */
+  overflow-x: auto;
 }
-
-section{
-
-  padding: 40px;
-}
-

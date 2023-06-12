@@ -1,4 +1,7 @@
 
+@import '~bootstrap/dist/css/bootstrap.css';
+
+
 .form-row {
   display: flex;
   flex-direction: row;
