@@ -1,7 +1,7 @@
 
 <h2>Lista utenti</h2>
 
-  <table mat-table [dataSource]="dataSource" >
+  <table mat-table [dataSource]="dataSource" [ngClass]="{'scrollable': this.isMobile}">
     <!-- Colonne della tabella -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Nome </th>

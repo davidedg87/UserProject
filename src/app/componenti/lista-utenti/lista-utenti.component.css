@@ -2,3 +2,8 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 
 
+.scrollable{
+
+overflow-x:visible;
+overflow-y: visible;
+}

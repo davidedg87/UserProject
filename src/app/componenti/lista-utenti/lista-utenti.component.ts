@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FakeApiService } from 'src/app/servizi/fake-api.service';
-import { PlatformService } from 'src/app/servizi/platform.service';
 import { User } from 'src/app/shared/user.interfaces';
 
 
@@ -15,13 +13,14 @@ export class ListaUtentiComponent implements OnInit {
   dataSource: MatTableDataSource<User>;
   displayedColumns: string[] = ['name', 'username', 'email'];
   users! : User[];
+  public isMobile! : boolean;
 
     constructor(private apiService : FakeApiService){
       this.dataSource = new MatTableDataSource<User>();
 
     }
     ngOnInit(): void {
-
+      this.checkWindowSize();
       this.fetchUsers();
     }
 
@@ -37,6 +36,16 @@ export class ListaUtentiComponent implements OnInit {
             }
           );
     }
+
+    @HostListener('window:resize')
+    onWindowResize() {
+      this.checkWindowSize();
+    }
+
+    private checkWindowSize() {
+      this.isMobile  = window.innerWidth < 768;
+    }
+
   }
 
 
