@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { DeviceDetectorService } from 'ngx-device-detector';
 
 
 @Injectable({
@@ -10,10 +9,10 @@ export class PlatformService {
   public isDesktop: boolean;
   public isMobile: boolean;
 
-  constructor(private deviceService: DeviceDetectorService){
+  constructor(){
 
-    this.isMobile =   !this.deviceService.isMobile();
-    this.isDesktop = !this.isMobile;
+    this.isMobile =   false;
+    this.isDesktop = true;
 
 
 
