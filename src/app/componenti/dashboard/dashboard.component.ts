@@ -10,9 +10,7 @@ export class DashboardComponent {
 public isDesktop! : boolean;
 
 
-  constructor(){
-
-  }
+  constructor(){ }
 
 
   ngOnInit() {
