@@ -1,14 +1,14 @@
 
 
-<mat-sidenav-container >
-  <mat-sidenav mode="side" opened *ngIf="this.isDesktop">
+<mat-sidenav-container class="mat-sidenav-container">
+  <mat-sidenav mode="side" opened *ngIf="this.isDesktop" class="mat-sidenav">
     <mat-list role="list">
       <mat-list-item role="listitem" routerLink="ListaUtenti" [routerLinkActive]="'active'">Lista Utenti</mat-list-item>
       <mat-list-item role="listitem" routerLink="AggiungiUtente" [routerLinkActive]="'active'">AggiungiUtente</mat-list-item>
     </mat-list>
   </mat-sidenav>
     <mat-sidenav-content>
-      <router-outlet  class="test"></router-outlet>
+     <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
 

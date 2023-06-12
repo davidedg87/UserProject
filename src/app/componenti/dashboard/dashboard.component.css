@@ -4,3 +4,16 @@
 {
 background-color: lightblue;
 }
+
+.mat-sidenav-container {
+  height: 80vh;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+.mat-sidenav {
+  width: 200px;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+

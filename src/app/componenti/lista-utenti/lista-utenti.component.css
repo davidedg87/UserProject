@@ -6,10 +6,12 @@
 
 overflow-x:visible;
 overflow-y: visible;
+height: auto;
 }
 
 .auto_scroll{
 
   overflow-x:auto;
   overflow-y: auto;
+  height: auto;
   }

@@ -1,4 +1,4 @@
-import { Component , HostListener } from '@angular/core';
+import { Component , HostListener ,ElementRef, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
 
 
 @Component({
@@ -10,7 +10,7 @@ export class DashboardComponent {
 public isDesktop! : boolean;
 
 
-  constructor(){ }
+  constructor(private elementRef: ElementRef){ }
 
 
   ngOnInit() {
