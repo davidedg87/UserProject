@@ -1,0 +1,11 @@
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>menu</mat-icon>
+</button>
+
+
+<mat-menu #menu="matMenu">
+  <ng-template matMenuContent>
+    <button mat-menu-item (click)="navigateToRoute('/ListaUtenti')" class="custom-menu-item">Lista utenti</button>
+    <button mat-menu-item (click)="navigateToRoute('/AggiungiUtente')" class="custom-menu-item">Aggiungi utente</button>
+  </ng-template>
+</mat-menu>

@@ -1,0 +1,18 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: cornflowerblue;
+  font-size:xx-large
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.center-section {
+  flex-grow: 1;
+  text-align: center;
+}

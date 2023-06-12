@@ -1,0 +1,15 @@
+
+
+<mat-sidenav-container >
+  <mat-sidenav mode="side" opened *ngIf="this.platformService.isDesktop">
+    <mat-list role="list">
+      <mat-list-item role="listitem" routerLink="ListaUtenti" [routerLinkActive]="'active'">Lista Utenti</mat-list-item>
+      <mat-list-item role="listitem" routerLink="AggiungiUtente" [routerLinkActive]="'active'">AggiungiUtente</mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
