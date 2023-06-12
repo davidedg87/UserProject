@@ -7,3 +7,9 @@
 overflow-x:visible;
 overflow-y: visible;
 }
+
+.auto_scroll{
+
+  overflow-x:auto;
+  overflow-y: auto;
+  }
