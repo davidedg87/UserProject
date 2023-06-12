@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu-mobile.component.css']
 })
 export class MenuMobileComponent {
-  isMouseOver: boolean = false;
 
   constructor(private router: Router){
   }
@@ -15,15 +14,6 @@ export class MenuMobileComponent {
   navigateToRoute(route: string) {
     this.router.navigate([route]);
   }
-
-  onMouseEnter() {
-    this.isMouseOver = true;
-  }
-
-  onMouseLeave() {
-    this.isMouseOver = false;
-  }
-
 
 
 }
