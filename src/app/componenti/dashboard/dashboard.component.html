@@ -1,7 +1,7 @@
 
 
 <mat-sidenav-container >
-  <mat-sidenav mode="side" opened *ngIf="this.platformService.isDesktop">
+  <mat-sidenav mode="side" opened *ngIf="this.isDesktop">
     <mat-list role="list">
       <mat-list-item role="listitem" routerLink="ListaUtenti" [routerLinkActive]="'active'">Lista Utenti</mat-list-item>
       <mat-list-item role="listitem" routerLink="AggiungiUtente" [routerLinkActive]="'active'">AggiungiUtente</mat-list-item>

@@ -16,7 +16,7 @@ export class ListaUtentiComponent implements OnInit {
   displayedColumns: string[] = ['name', 'username', 'email'];
   users! : User[];
 
-    constructor(private apiService : FakeApiService, public platformService : PlatformService){
+    constructor(private apiService : FakeApiService){
       this.dataSource = new MatTableDataSource<User>();
 
     }

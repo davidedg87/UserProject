@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { PlatformService } from 'src/app/servizi/platform.service';
+import { Component , HostListener } from '@angular/core';
 
 
 @Component({
@@ -8,17 +7,26 @@ import { PlatformService } from 'src/app/servizi/platform.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
+public isDesktop! : boolean;
 
 
+  constructor(){
 
-constructor(public platformService : PlatformService){
-
-}
+  }
 
 
-toggleSidenav() {
-  // Logica per aprire/chiudere il menu
-}
+  ngOnInit() {
+    this.checkWindowSize();
+  }
+
+  @HostListener('window:resize')
+  onWindowResize() {
+    this.checkWindowSize();
+  }
+
+  private checkWindowSize() {
+    this.isDesktop  = !(window.innerWidth < 768);
+  }
 
 
 }

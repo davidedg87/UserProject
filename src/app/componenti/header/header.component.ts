@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { PlatformService } from 'src/app/servizi/platform.service';
+import { Component, HostListener  } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +7,23 @@ import { PlatformService } from 'src/app/servizi/platform.service';
 })
 export class HeaderComponent {
 
-  constructor(public platformService : PlatformService){
+  public isMobile! : boolean;
+  constructor(){  }
 
+
+
+
+  ngOnInit() {
+    this.checkWindowSize();
+  }
+
+  @HostListener('window:resize')
+  onWindowResize() {
+    this.checkWindowSize();
+  }
+
+  private checkWindowSize() {
+    this.isMobile  = window.innerWidth < 768;
   }
 
 }
