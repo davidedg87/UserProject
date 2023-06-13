@@ -29,6 +29,7 @@ import { HeaderComponent } from './componenti/header/header.component';
 import { MenuMobileComponent } from './componenti/menu-mobile/menu-mobile.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { MenuMobileComponent } from './componenti/menu-mobile/menu-mobile.compon
     MatTableModule,
     MatInputModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+
 
   ],
   providers: [],
