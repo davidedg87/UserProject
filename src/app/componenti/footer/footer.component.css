@@ -1,5 +1,9 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+
+
 .footer {
   background-color: cornflowerblue;
   padding: 16px;
   text-align: center;
+  flex-grow: 1;
 }

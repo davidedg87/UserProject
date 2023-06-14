@@ -7,12 +7,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu-mobile.component.css']
 })
 export class MenuMobileComponent {
+  isMenuOpen: boolean = false;
 
   constructor(private router: Router){
   }
 
   navigateToRoute(route: string) {
     this.router.navigate([route]);
+  }
+
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  onMenuClosed() {
+    this.isMenuOpen = false;
   }
 
 
