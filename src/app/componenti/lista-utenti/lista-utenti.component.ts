@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { fromEvent, throttleTime } from 'rxjs';
+import { Subscription, fromEvent, throttleTime } from 'rxjs';
 import { FakeApiService } from 'src/app/servizi/fake-api.service';
 import { FormService } from 'src/app/servizi/form.service';
 import { User } from 'src/app/shared/user.interfaces';
@@ -11,7 +11,9 @@ import { User } from 'src/app/shared/user.interfaces';
   templateUrl: './lista-utenti.component.html',
   styleUrls: ['./lista-utenti.component.css']
 })
-export class ListaUtentiComponent implements OnInit {
+export class ListaUtentiComponent implements OnInit, OnDestroy {
+  private formResize!: Subscription;
+  private fetchSubscription!: Subscription;
   dataSource: MatTableDataSource<User>;
   displayedColumns: string[] = ['name', 'username', 'email'];
   users! : User[];
@@ -20,13 +22,14 @@ export class ListaUtentiComponent implements OnInit {
       this.dataSource = new MatTableDataSource<User>();
 
     }
+
     ngOnInit(): void {
       this.formService.checkMobileView();
       this.fetchUsers();
       //fromEvent va a definire un evento sulla form che scatta al resize della window in questo caso
       //la pipe con throttleItem serve per andare a dire che deve esempre aspettare almeno 200 ms per far scattare la subscribe
       //anche se scattano più eventi di resize
-      fromEvent( window, 'resize').pipe(throttleTime(200)).subscribe( () =>
+      this.formResize = fromEvent( window, 'resize').pipe(throttleTime(200)).subscribe( () =>
       {
           console.log('resize');
           this.formService.checkMobileView();
@@ -35,7 +38,7 @@ export class ListaUtentiComponent implements OnInit {
     }
 
     fetchUsers() {
-        this.apiService.getListUser()
+        this.fetchSubscription = this.apiService.getListUser()
           .subscribe(
             (response) => {
               this.users = response;
@@ -46,6 +49,12 @@ export class ListaUtentiComponent implements OnInit {
             }
           );
     }
+
+    ngOnDestroy(): void {
+      this.formResize.unsubscribe();
+      this.fetchSubscription.unsubscribe();
+    }
+
 
 
   }

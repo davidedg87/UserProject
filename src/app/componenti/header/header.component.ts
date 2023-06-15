@@ -1,5 +1,5 @@
-import { Component,  } from '@angular/core';
-import { debounce, debounceTime, fromEvent, throttleTime } from 'rxjs';
+import { Component, OnDestroy,  } from '@angular/core';
+import { Subscription, debounce, debounceTime, fromEvent, throttleTime } from 'rxjs';
 import { FormService } from 'src/app/servizi/form.service';
 
 @Component({
@@ -7,22 +7,28 @@ import { FormService } from 'src/app/servizi/form.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnDestroy{
+  private formResizeSubscription!: Subscription;
   constructor(public formService : FormService){  }
+
 
   ngOnInit() {
     this.formService.checkMobileView();
     //fromEvent va a definire un evento sulla form che scatta al resize della window in questo caso
     //la pipe con throttleItem serve per andare a dire che deve esempre aspettare almeno 200 ms per far scattare la subscribe
     //anche se scattano più eventi di resize
-    fromEvent( window, 'resize').pipe(throttleTime(200)).subscribe( () =>
+    this.formResizeSubscription = fromEvent( window, 'resize').pipe(throttleTime(200)).subscribe( () =>
       {
           console.log('resize');
           this.formService.checkMobileView();
       }
       )
   }
+
+  ngOnDestroy(): void {
+    this.formResizeSubscription.unsubscribe();
+  }
+
 
 
 
