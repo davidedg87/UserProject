@@ -81,10 +81,9 @@ export class AggiungiUtenteComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.saveSubscription.unsubscribe();
+    if (this.saveSubscription)
+      this.saveSubscription.unsubscribe();
   }
-
-
 
 
 
