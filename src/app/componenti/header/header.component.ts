@@ -1,4 +1,6 @@
-import { Component, HostListener  } from '@angular/core';
+import { Component,  } from '@angular/core';
+import { debounce, debounceTime, fromEvent, throttleTime } from 'rxjs';
+import { FormService } from 'src/app/servizi/form.service';
 
 @Component({
   selector: 'app-header',
@@ -7,20 +9,22 @@ import { Component, HostListener  } from '@angular/core';
 })
 export class HeaderComponent {
 
-  public isMobile! : boolean;
-  constructor(){  }
+  constructor(public formService : FormService){  }
 
   ngOnInit() {
-    this.checkWindowSize();
+    this.formService.checkMobileView();
+    //fromEvent va a definire un evento sulla form che scatta al resize della window in questo caso
+    //la pipe con throttleItem serve per andare a dire che deve esempre aspettare almeno 200 ms per far scattare la subscribe
+    //anche se scattano più eventi di resize
+    fromEvent( window, 'resize').pipe(throttleTime(200)).subscribe( () =>
+      {
+          console.log('resize');
+          this.formService.checkMobileView();
+      }
+      )
   }
 
-  @HostListener('window:resize')
-  onWindowResize() {
-    this.checkWindowSize();
-  }
 
-  private checkWindowSize() {
-    this.isMobile  = window.innerWidth < 768;
-  }
+
 
 }

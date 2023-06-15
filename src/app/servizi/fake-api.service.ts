@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../shared/user.interfaces';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +12,20 @@ export class FakeApiService {
 
   url = 'https://jsonplaceholder.typicode.com/users'
 
-  saveUser(url : string, body: User){
+  saveUser(body: User){
 
-    return this.http.post(url,body)
+    return this.http.post(this.url,body)
   }
 
-  getListUser(url : string){
+  getListUser() : Observable<User[]>{
 
 
-    return this.http.get<User[]>(url);
+    return this.http.get<User[]>(this.url).pipe(tap((data) => {
+
+        console.log('data', data);
+
+
+    } ));
 
   }
 

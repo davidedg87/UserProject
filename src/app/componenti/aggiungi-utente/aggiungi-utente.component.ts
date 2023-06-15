@@ -44,7 +44,7 @@ export class AggiungiUtenteComponent implements OnInit {
       telefono : this.form.get('telefono')!.value
     }
 
-    this.apiService.saveUser(this.apiService.url, newUser).subscribe(
+    this.apiService.saveUser(newUser).subscribe(
       (response) => {
         this.openDialog('Info', 'Utente inserito correttamente');
         console.log('Utente inserito correttamente');

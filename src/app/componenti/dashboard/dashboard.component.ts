@@ -1,4 +1,6 @@
-import { Component , HostListener ,ElementRef, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import { Component  ,ElementRef, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import { fromEvent, throttleTime } from 'rxjs';
+import { FormService } from 'src/app/servizi/form.service';
 
 
 @Component({
@@ -7,23 +9,21 @@ import { Component , HostListener ,ElementRef, OnChanges, SimpleChanges, AfterVi
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-public isDesktop! : boolean;
 
-
-  constructor(private elementRef: ElementRef){ }
+  constructor(private elementRef: ElementRef, public formService : FormService){ }
 
 
   ngOnInit() {
-    this.checkWindowSize();
-  }
-
-  @HostListener('window:resize')
-  onWindowResize() {
-    this.checkWindowSize();
-  }
-
-  private checkWindowSize() {
-    this.isDesktop  = !(window.innerWidth < 768);
+    this.formService.checkMobileView();
+    //fromEvent va a definire un evento sulla form che scatta al resize della window in questo caso
+    //la pipe con throttleItem serve per andare a dire che deve esempre aspettare almeno 200 ms per far scattare la subscribe
+    //anche se scattano più eventi di resize
+    fromEvent( window, 'resize').pipe(throttleTime(200)).subscribe( () =>
+      {
+          console.log('resize');
+          this.formService.checkMobileView();
+      }
+      )
   }
 
 
