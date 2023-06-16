@@ -9,26 +9,22 @@ import { ListaUtentiComponent } from './componenti/lista-utenti/lista-utenti.com
 import { AggiungiUtenteComponent } from './componenti/aggiungi-utente/aggiungi-utente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTableModule} from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 import { DashboardComponent } from './componenti/dashboard/dashboard.component';
 import { FooterComponent } from './componenti/footer/footer.component';
 import { PopupComponent } from './componenti/popup/popup.component';
 import { MatMenuModule } from '@angular/material/menu';
 
-
 import { MatInputModule } from '@angular/material/input';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './componenti/header/header.component';
 import { MenuMobileComponent } from './componenti/menu-mobile/menu-mobile.component';
-
-
 
 @NgModule({
   declarations: [
@@ -39,7 +35,7 @@ import { MenuMobileComponent } from './componenti/menu-mobile/menu-mobile.compon
     FooterComponent,
     PopupComponent,
     HeaderComponent,
-    MenuMobileComponent
+    MenuMobileComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,10 +54,8 @@ import { MenuMobileComponent } from './componenti/menu-mobile/menu-mobile.compon
     MatInputModule,
     MatDialogModule,
     MatMenuModule,
-
-
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

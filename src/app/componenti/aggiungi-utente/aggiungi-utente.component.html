@@ -1,43 +1,51 @@
 <h2 #aggiungiUtenteH2>Aggiungi utente</h2>
 
 <div class="form-container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" #formGroupDirective="ngForm" >
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" #formGroupDirective="ngForm">
 
     <div class="form-row">
 
       <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Nome</mat-label>
-          <!--Valido solo se compilato -->
-          <input matInput type="text" name="nome" formControlName="nome"> <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
-          <p *ngIf="!form.get('nome')!.valid &&  form.get('nome')!.touched ">Inserisci un nome</p> <!--Accesso alla proprietà nome-->
-        </mat-form-field>
+        <mat-label>Nome</mat-label>
+        <!--Valido solo se compilato -->
+        <input matInput type="text" name="nome" formControlName="nome">
+        <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
+        <p *ngIf="!form.get('nome')!.valid &&  form.get('nome')!.touched ">Inserisci un nome</p>
+        <!--Accesso alla proprietà nome-->
+      </mat-form-field>
 
 
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Email</mat-label>
-          <!--Valido solo se compilato -->
-          <input matInput type="text" name="email" formControlName="email"> <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
-          <p *ngIf="!form.get('email')!.valid &&  form.get('email')!.touched ">Inserisci un email</p> <!--Accesso alla proprietà nome-->
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Email</mat-label>
+        <!--Valido solo se compilato -->
+        <input matInput type="text" name="email" formControlName="email">
+        <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
+        <p *ngIf="!form.get('email')!.valid &&  form.get('email')!.touched ">Inserisci un email</p>
+        <!--Accesso alla proprietà nome-->
+      </mat-form-field>
 
     </div>
 
     <div class="form-row">
 
       <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Username</mat-label>
-          <!--Valido solo se compilato -->
-          <input matInput type="text" name="username" formControlName="username"> <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
-          <p *ngIf="!form.get('username')!.valid &&  form.get('username')!.touched ">Inserisci username</p> <!--Accesso alla proprietà nome-->
-        </mat-form-field>
+        <mat-label>Username</mat-label>
+        <!--Valido solo se compilato -->
+        <input matInput type="text" name="username" formControlName="username">
+        <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
+        <p *ngIf="!form.get('username')!.valid &&  form.get('username')!.touched ">Inserisci username</p>
+        <!--Accesso alla proprietà nome-->
+      </mat-form-field>
 
 
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Telefono</mat-label>
-          <!--Valido solo se compilato -->
-          <input matInput type="text" name="telefono" formControlName="telefono"> <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
-          <p *ngIf="!form.get('telefono')!.valid &&  form.get('telefono')!.touched ">Inserisci un numero di telefon</p> <!--Accesso alla proprietà nome-->
-        </mat-form-field>
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Telefono</mat-label>
+        <!--Valido solo se compilato -->
+        <input matInput type="text" name="telefono" formControlName="telefono">
+        <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
+        <p *ngIf="!form.get('telefono')!.valid &&  form.get('telefono')!.touched ">Inserisci un numero di telefon</p>
+        <!--Accesso alla proprietà nome-->
+      </mat-form-field>
 
     </div>
 

@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FormService {
-  public isMobile! : boolean;
-  public isDesktop! : boolean;
-  constructor() { }
+  public isMobile!: boolean;
+  public isDesktop!: boolean;
+  constructor() {}
 
-  checkMobileView()
-  {
-    this.isMobile  = window.innerWidth < 768;
+  checkMobileView() {
+    this.isMobile = window.innerWidth < 768;
     this.isDesktop = !this.isMobile;
   }
-
 }

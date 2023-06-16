@@ -5,17 +5,19 @@ import { ListaUtentiComponent } from './componenti/lista-utenti/lista-utenti.com
 import { AggiungiUtenteComponent } from './componenti/aggiungi-utente/aggiungi-utente.component';
 
 const routes: Routes = [
-  {path : '', component: DashboardComponent, children:
-    [
-      {path: '', redirectTo : 'ListaUtenti', pathMatch: 'full'}, //Se il path è vuoto allora faccio una redirect alla Lista Utenti
-      {path: 'ListaUtenti', component: ListaUtentiComponent},
-      {path: 'AggiungiUtente', component: AggiungiUtenteComponent}
-    ]
-  }];
-
+  {
+    path: '',
+    component: DashboardComponent,
+    children: [
+      { path: '', redirectTo: 'ListaUtenti', pathMatch: 'full' }, //Se il path è vuoto allora faccio una redirect alla Lista Utenti
+      { path: 'ListaUtenti', component: ListaUtentiComponent },
+      { path: 'AggiungiUtente', component: AggiungiUtenteComponent },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

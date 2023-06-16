@@ -1,9 +1,8 @@
-
 <h2>Lista utenti</h2>
 
 
 <div [ngClass]="{'scrollable': formService.isMobile , 'auto_scroll' : !formService.isMobile}">
-  <table mat-table [dataSource]="dataSource" >
+  <table mat-table [dataSource]="dataSource">
     <!-- Colonne della tabella -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Nome </th>
