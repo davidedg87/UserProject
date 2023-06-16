@@ -12,7 +12,7 @@ import { User } from 'src/app/shared/user.interfaces';
   styleUrls: ['./lista-utenti.component.css']
 })
 export class ListaUtentiComponent implements OnInit, OnDestroy {
-  private formResize!: Subscription;
+  private formResizeSubscription!: Subscription;
   private fetchSubscription!: Subscription;
   dataSource: MatTableDataSource<User>;
   displayedColumns: string[] = ['name', 'username', 'email'];
@@ -29,7 +29,7 @@ export class ListaUtentiComponent implements OnInit, OnDestroy {
       //fromEvent va a definire un evento sulla form che scatta al resize della window in questo caso
       //la pipe con throttleItem serve per andare a dire che deve esempre aspettare almeno 200 ms per far scattare la subscribe
       //anche se scattano più eventi di resize
-      this.formResize = fromEvent( window, 'resize').pipe(throttleTime(200)).subscribe( () =>
+      this.formResizeSubscription = fromEvent( window, 'resize').pipe(throttleTime(200)).subscribe( () =>
       {
           console.log('resize');
           this.formService.checkMobileView();
@@ -51,8 +51,10 @@ export class ListaUtentiComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-      this.formResize.unsubscribe();
-      this.fetchSubscription.unsubscribe();
+      if(this.formResizeSubscription)
+        this.formResizeSubscription.unsubscribe();
+      if(this.fetchSubscription)
+        this.fetchSubscription.unsubscribe();
     }
 
 

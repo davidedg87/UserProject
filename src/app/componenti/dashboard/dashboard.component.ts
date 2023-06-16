@@ -28,7 +28,8 @@ export class DashboardComponent implements OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.formResizeSubscription.unsubscribe();
+    if(this.formResizeSubscription)
+       this.formResizeSubscription.unsubscribe();
   }
 
 

@@ -26,7 +26,8 @@ export class HeaderComponent implements OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.formResizeSubscription.unsubscribe();
+    if(this.formResizeSubscription)
+       this.formResizeSubscription.unsubscribe();
   }
 
 
