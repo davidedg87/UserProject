@@ -1,4 +1,4 @@
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FakeApiService } from 'src/app/servizi/fake-api.service';
@@ -11,8 +11,11 @@ import { Subscription } from 'rxjs';
   templateUrl: './aggiungi-utente.component.html',
   styleUrls: ['./aggiungi-utente.component.css']
 })
-export class AggiungiUtenteComponent implements OnInit, OnDestroy {
-  @ViewChild(FormGroupDirective) formGroupDirective!: FormGroupDirective;
+export class AggiungiUtenteComponent implements OnInit, OnDestroy , AfterViewInit {
+  //Definizione viewChild per accedere a proprietà del DOM. In questo caso su H2
+  @ViewChild('aggiungiUtenteH2') aggiungiUtenteH2!: ElementRef<HTMLHeadingElement>;
+
+
   //Definisco form di tipo FormGroup
   form!: FormGroup;
   private saveSubscription!: Subscription;
@@ -24,8 +27,16 @@ export class AggiungiUtenteComponent implements OnInit, OnDestroy {
               ) {}
 
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    //Posso accedere all'elemento del DOM avendo definito come ViewChild della proprietà
 
+    console.log('aggiungiUtenteH2', this.aggiungiUtenteH2);
+    this.aggiungiUtenteH2.nativeElement.innerHTML = 'aggiungiUtenteH2'
+  }
+
+
+  ngOnInit(): void {
+    console.log('aggiungiUtenteH2', this.aggiungiUtenteH2);//Undefined in quanto non ancora caricato
     //Inizializzo il form andando ad indicare quali saranno i campi che lo compongono con i vari validatori
     this.form = this.formBuilder.group (
       {
@@ -36,15 +47,35 @@ export class AggiungiUtenteComponent implements OnInit, OnDestroy {
       }
 
     )
+
+    this.form.valueChanges.subscribe(
+      (value) => {
+          console.log('valuechanges' ,value )
+
+      }
+    )
+
+    this.form.statusChanges.subscribe(
+      (value) => {
+          console.log('statusChanges' ,value )
+
+      }
+    )
+
+
   }
 
   onSubmit()
   {
+    //const formValue = this.form.value //Prende solo i campi abilitati
+    const formValue = this.form.getRawValue() //Prende anche i campi disabilitati
+    const {nome, email } = this.form.value
     const newUser : User = {
-      name : this.form.get('nome')!.value,
-      email : this.form.get('email')!.value,
-      username : this.form.get('username')!.value,
-      telefono : this.form.get('telefono')!.value
+      //name : this.form.get('nome')!.value,
+      name : nome,
+      email : email,
+      username : formValue.username,
+      telefono : formValue.telefono
     }
 
     this.saveSubscription = this.apiService.saveUser(newUser).subscribe(
@@ -61,10 +92,32 @@ export class AggiungiUtenteComponent implements OnInit, OnDestroy {
 
 
   onReset() {
+    this.form.markAsPristine()
+    this.form.markAsUntouched()
     this.form.reset();
-    this.formGroupDirective.resetForm();
+
+
+
+
   }
 
+  /*
+  toggle(){
+
+    if( this.form.get('nome')!.disabled)
+      this.form.get('nome')!.enable();
+    else
+    this.form.get('nome')!.disable({
+        //emitEvent : false --> Evito di emettere evento a seguito della modifica
+          onlySelf : true
+
+    });
+
+    this.form.updateValueAndValidity();
+
+
+  }
+*/
 
   openDialog(tipo : string, messaggio : string) {
 

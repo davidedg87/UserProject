@@ -1,7 +1,7 @@
-<h2>Aggiungi utente</h2>
+<h2 #aggiungiUtenteH2>Aggiungi utente</h2>
 
 <div class="form-container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" #formGroupDirective="ngForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" #formGroupDirective="ngForm" >
 
     <div class="form-row">
 
@@ -43,6 +43,8 @@
 
     <div class="form-actions">
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Salva</button>
+
     </div>
   </form>
+  <!--<button mat-raised-button color="primary" type="button"  (click)="toggle()">Toggle</button> -->
 </div>

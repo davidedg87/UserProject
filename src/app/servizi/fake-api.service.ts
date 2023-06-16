@@ -19,7 +19,7 @@ export class FakeApiService {
 
   getListUser() : Observable<User[]>{
 
-
+    //Tap non ha alcun effetto se non quello di recuperare i dati che arrivano dalla chiamata all'api per poterli ad esempio stampare
     return this.http.get<User[]>(this.url).pipe(tap((data) => {
 
         console.log('data', data);
