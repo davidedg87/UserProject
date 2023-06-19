@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription, fromEvent, throttleTime } from 'rxjs';
 import { FakeApiService } from 'src/app/servizi/fake-api.service';
-import { FormService } from 'src/app/servizi/form.service';
+import {  ResizeService } from 'src/app/servizi/form.service';
 import { User } from 'src/app/shared/user.interfaces';
 
 @Component({
@@ -19,13 +19,13 @@ export class ListaUtentiComponent implements OnInit, OnDestroy {
 
   constructor(
     private apiService: FakeApiService,
-    public formService: FormService
+    public resizeService: ResizeService
   ) {
     this.dataSource = new MatTableDataSource<User>();
   }
 
   ngOnInit(): void {
-    this.formService.checkMobileView();
+    this.resizeService.checkMobileView();
     this.fetchUsers();
     //fromEvent va a definire un evento sulla form che scatta al resize della window in questo caso
     //la pipe con throttleItem serve per andare a dire che deve esempre aspettare almeno 200 ms per far scattare la subscribe
@@ -34,7 +34,7 @@ export class ListaUtentiComponent implements OnInit, OnDestroy {
       .pipe(throttleTime(200))
       .subscribe(() => {
         console.log('resize');
-        this.formService.checkMobileView();
+        this.resizeService.checkMobileView();
       });
   }
 

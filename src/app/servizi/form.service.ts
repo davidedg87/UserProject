@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class FormService {
+export class ResizeService {
   public isMobile!: boolean;
   public isDesktop!: boolean;
   constructor() {}
