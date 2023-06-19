@@ -1,0 +1,38 @@
+<h1>Indirizzo</h1>
+<div class="form-container">
+  <form [formGroup]="addressFormGroup">
+
+    <div class="form-row">
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Via</mat-label>
+        <!--Valido solo se compilato -->
+        <input matInput type="text" name="via" formControlName="via">
+        <mat-error *ngIf="!addressFormGroup!.valid">Situazione non corretta</mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <div class="form-row">
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Città</mat-label>
+        <!--Valido solo se compilato -->
+        <input matInput type="text" name="citta" formControlName="citta">
+        <mat-error *ngIf="!addressFormGroup!.valid">Situazione non corretta</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Numero</mat-label>
+        <!--Valido solo se compilato -->
+        <input matInput type="text" name="numero" formControlName="numero">
+        <mat-error *ngIf="!addressFormGroup!.valid">Situazione non corretta</mat-error>
+      </mat-form-field>
+
+    </div>
+
+
+
+  </form>
+</div>

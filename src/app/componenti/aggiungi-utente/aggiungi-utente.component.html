@@ -1,7 +1,7 @@
 <h2 #aggiungiUtenteH2>Aggiungi utente</h2>
 
 <div class="form-container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" #formGroupDirective="ngForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" #formGroupDirective="ngForm" >
 
     <div class="form-row">
 
@@ -10,7 +10,7 @@
         <!--Valido solo se compilato -->
         <input matInput type="text" name="nome" formControlName="nome">
         <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
-        <p *ngIf="!form.get('nome')!.valid &&  form.get('nome')!.touched ">Inserisci un nome</p>
+        <mat-error *ngIf="!form.get('nome')!.valid &&  form.get('nome')!.touched ">Inserisci un nome</mat-error>
         <!--Accesso alla proprietà nome-->
       </mat-form-field>
 
@@ -20,7 +20,7 @@
         <!--Valido solo se compilato -->
         <input matInput type="text" name="email" formControlName="email">
         <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
-        <p *ngIf="!form.get('email')!.valid &&  form.get('email')!.touched ">Inserisci un email</p>
+        <mat-error *ngIf="!form.get('email')!.valid &&  form.get('email')!.touched ">Inserisci un email</mat-error>
         <!--Accesso alla proprietà nome-->
       </mat-form-field>
 
@@ -33,7 +33,7 @@
         <!--Valido solo se compilato -->
         <input matInput type="text" name="username" formControlName="username">
         <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
-        <p *ngIf="!form.get('username')!.valid &&  form.get('username')!.touched ">Inserisci username</p>
+        <mat-error  *ngIf="!form.get('username')!.valid &&  form.get('username')!.touched ">Inserisci username</mat-error>
         <!--Accesso alla proprietà nome-->
       </mat-form-field>
 
@@ -43,11 +43,18 @@
         <!--Valido solo se compilato -->
         <input matInput type="text" name="telefono" formControlName="telefono">
         <!--formControlName serve per mappare con l'oggetto formGroup creato lato TS-->
-        <p *ngIf="!form.get('telefono')!.valid &&  form.get('telefono')!.touched ">Inserisci un numero di telefon</p>
+        <mat-error *ngIf="!form.get('telefono')!.valid &&  form.get('telefono')!.touched ">Inserisci un numero di telefono</mat-error>
         <!--Accesso alla proprietà nome-->
       </mat-form-field>
 
     </div>
+    <!--Vecchia versione in cui il formGroup dell'indirizzo si creava nel form principale e si passava tramite input-->
+    <!--<app-indirizzo [addressFormGroup]="getIndirizzoFormGroup()"> </app-indirizzo> -->
+
+
+    <!--Nuova versione in cui il formGroup dell'indirizzo viene creato direttamente nel componente app-Indirizzo all'interno di una funzione
+    dedicata che viene richiamata dal componente principale-->
+    <app-indirizzo> </app-indirizzo>
 
     <div class="form-actions">
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Salva</button>

@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HeaderComponent } from './componenti/header/header.component';
 import { MenuMobileComponent } from './componenti/menu-mobile/menu-mobile.component';
+import { IndirizzoComponent } from './componenti/indirizzo/indirizzo.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MenuMobileComponent } from './componenti/menu-mobile/menu-mobile.compon
     PopupComponent,
     HeaderComponent,
     MenuMobileComponent,
+    IndirizzoComponent,
   ],
   imports: [
     BrowserModule,

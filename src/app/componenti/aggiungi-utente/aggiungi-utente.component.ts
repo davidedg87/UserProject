@@ -19,6 +19,7 @@ import { FakeApiService } from 'src/app/servizi/fake-api.service';
 import { PopupComponent } from '../popup/popup.component';
 import { User } from 'src/app/shared/user.interfaces';
 import { Subscription } from 'rxjs';
+import { IndirizzoComponent } from '../indirizzo/indirizzo.component';
 
 @Component({
   selector: 'app-aggiungi-utente',
@@ -31,6 +32,9 @@ export class AggiungiUtenteComponent
   //Definizione viewChild per accedere a proprietà del DOM. In questo caso su H2
   @ViewChild('aggiungiUtenteH2')
   aggiungiUtenteH2!: ElementRef<HTMLHeadingElement>;
+  //Istanza di IndirizzoComponent per poterla invocare
+  @ViewChild(IndirizzoComponent, { static: true })
+  indirizzoFormRef!: IndirizzoComponent;
 
   //Definisco form di tipo FormGroup
   form!: FormGroup;
@@ -58,6 +62,7 @@ export class AggiungiUtenteComponent
       email: ['', [Validators.required, Validators.email]],
       username: ['', Validators.required],
       telefono: ['', Validators.required],
+      indirizzo: this.indirizzoFormRef.createGroup(), //Creo sottogruppo indirizzo direttamente chiamando il componente
     });
 
     this.form.valueChanges.subscribe((value) => {
@@ -79,8 +84,10 @@ export class AggiungiUtenteComponent
       email: email,
       username: formValue.username,
       telefono: formValue.telefono,
+      indirizzo: formValue.indirizzo,
     };
 
+    console.log('user da inserire', newUser);
     this.saveSubscription = this.apiService.saveUser(newUser).subscribe(
       (response) => {
         this.openDialog('Info', 'Utente inserito correttamente');
@@ -138,5 +145,9 @@ export class AggiungiUtenteComponent
 
   ngOnDestroy(): void {
     if (this.saveSubscription) this.saveSubscription.unsubscribe();
+  }
+
+  getIndirizzoFormGroup(): FormGroup {
+    return this.form.get('indirizzo') as FormGroup;
   }
 }
