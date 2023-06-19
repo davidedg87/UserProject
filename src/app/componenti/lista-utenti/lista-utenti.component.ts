@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription, fromEvent, throttleTime } from 'rxjs';
 import { FakeApiService } from 'src/app/servizi/fake-api.service';
-import {  ResizeService } from 'src/app/servizi/form.service';
+import {  ResizeService } from 'src/app/servizi/resize.service';
 import { User } from 'src/app/shared/user.interfaces';
 
 @Component({
@@ -11,8 +11,9 @@ import { User } from 'src/app/shared/user.interfaces';
   styleUrls: ['./lista-utenti.component.css'],
 })
 export class ListaUtentiComponent implements OnInit, OnDestroy {
-  private formResizeSubscription!: Subscription;
+  private resizeSubscription!: Subscription;
   private fetchSubscription!: Subscription;
+  public isMobile : boolean = false;
   dataSource: MatTableDataSource<User>;
   displayedColumns: string[] = ['name', 'username', 'email'];
   users!: User[];
@@ -25,17 +26,17 @@ export class ListaUtentiComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.resizeService.checkMobileView();
+
     this.fetchUsers();
-    //fromEvent va a definire un evento sulla form che scatta al resize della window in questo caso
-    //la pipe con throttleItem serve per andare a dire che deve esempre aspettare almeno 200 ms per far scattare la subscribe
-    //anche se scattano più eventi di resize
-    this.formResizeSubscription = fromEvent(window, 'resize')
-      .pipe(throttleTime(200))
-      .subscribe(() => {
-        console.log('resize');
-        this.resizeService.checkMobileView();
-      });
+
+    //Mi metto in ascolto dell'observable definito in resizeService creato con BehaviourSubject
+    //Il BehaviourSubject è impostato per scattare ad ogni formResize
+    this.resizeSubscription = this.resizeService.isMobile$.subscribe(
+      (result) => {
+        this.isMobile = result;
+      }
+    );
+
   }
 
   fetchUsers() {
@@ -54,7 +55,7 @@ export class ListaUtentiComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.formResizeSubscription) this.formResizeSubscription.unsubscribe();
+    if (this.resizeSubscription) this.resizeSubscription.unsubscribe();
     if (this.fetchSubscription) this.fetchSubscription.unsubscribe();
   }
 }

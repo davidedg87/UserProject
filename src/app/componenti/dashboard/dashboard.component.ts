@@ -7,7 +7,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { Subscription, fromEvent, throttleTime } from 'rxjs';
-import { ResizeService } from 'src/app/servizi/form.service';
+import { ResizeService } from 'src/app/servizi/resize.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,26 +15,23 @@ import { ResizeService } from 'src/app/servizi/form.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnDestroy {
-  private formResizeSubscription!: Subscription;
+  private resizeSubscription!: Subscription;
+  public isMobile: boolean = false;
   constructor(
-    private elementRef: ElementRef,
     public resizeService: ResizeService
   ) {}
 
   ngOnInit() {
-    this.resizeService.checkMobileView();
-    //fromEvent va a definire un evento sulla form che scatta al resize della window in questo caso
-    //la pipe con throttleItem serve per andare a dire che deve esempre aspettare almeno 200 ms per far scattare la subscribe
-    //anche se scattano più eventi di resize
-    this.formResizeSubscription = fromEvent(window, 'resize')
-      .pipe(throttleTime(200))
-      .subscribe(() => {
-        console.log('resize');
-        this.resizeService.checkMobileView();
-      });
+    //Mi metto in ascolto dell'observable definito in resizeService creato con BehaviourSubject
+    //Il BehaviourSubject è impostato per scattare ad ogni formResize
+    this.resizeSubscription = this.resizeService.isMobile$.subscribe(
+      (result) => {
+        this.isMobile = result;
+      }
+    );
   }
 
   ngOnDestroy(): void {
-    if (this.formResizeSubscription) this.formResizeSubscription.unsubscribe();
+    if (this.resizeSubscription) this.resizeSubscription.unsubscribe();
   }
 }
