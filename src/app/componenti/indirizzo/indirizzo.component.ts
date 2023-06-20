@@ -1,4 +1,3 @@
-import { UpperCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {

@@ -6,6 +6,16 @@
   font-weight: bold;
 }
 
+.required-par {
+  color: red;
+}
+
+
+
+.required-star::after {
+  content: "*";
+  color: red;
+}
 
 .form-container {
   display: grid;

@@ -5,12 +5,12 @@
     <div class="form-row">
 
       <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Via</mat-label>
+        <mat-label [class.required-star]="checkAddressFieldMissing('via')" >Via</mat-label>
         <!--Valido solo se compilato -->
         <input matInput type="text" name="via" formControlName="via"
           [class.required]="checkAddressFieldMissing('via')">
         <!--Da capire perchè in questo componente mat-error non funzione-->
-        <p *ngIf="checkAddressFieldMissing('via')">Campo obbligatorio</p>
+        <mat-error class="required-par" *ngIf="checkAddressFieldMissing('via')">Campo obbligatorio</mat-error>
       </mat-form-field>
 
     </div>
@@ -18,23 +18,23 @@
     <div class="form-row">
 
       <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Città</mat-label>
+        <mat-label [class.required-star]="checkAddressFieldMissing('citta')">Città</mat-label>
         <!--Valido solo se compilato -->
         <!--<input matInput type="text" name="citta" formControlName="citta" [class.required]="addressFormGroup!.errors!['addressFieldMissing']">-->
         <input matInput type="text" name="citta" formControlName="citta"
           [class.required]="checkAddressFieldMissing('citta')">
         <!--Da capire perchè in questo componente mat-error non funzione-->
-        <p *ngIf="checkAddressFieldMissing('citta')">Campo obbligatorio</p>
+        <mat-error class="required-par" *ngIf="checkAddressFieldMissing('citta')">Campo obbligatorio</mat-error>
       </mat-form-field>
 
 
       <mat-form-field appearance="fill" class="form-field">
-        <mat-label>Numero</mat-label>
+        <mat-label [class.required-star]="checkAddressFieldMissing('numero')" >Numero</mat-label>
         <!--Valido solo se compilato -->
         <input matInput type="text" name="numero" formControlName="numero"
           [class.required]="checkAddressFieldMissing('numero')">
         <!--Da capire perchè in questo componente mat-error non funzione-->
-        <p *ngIf="checkAddressFieldMissing('numero')">Campo obbligatorio</p>
+        <mat-error class="required-par" *ngIf="checkAddressFieldMissing('numero')">Campo obbligatorio</mat-error>
       </mat-form-field>
 
     </div>
