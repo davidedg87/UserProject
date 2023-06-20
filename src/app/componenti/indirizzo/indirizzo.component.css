@@ -1,3 +1,12 @@
+
+@import '~bootstrap/dist/css/bootstrap.css';
+
+.required {
+  color: red;
+  font-weight: bold;
+}
+
+
 .form-container {
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -16,3 +25,4 @@
   flex-direction: row;
 
 }
+
