@@ -60,16 +60,18 @@ export class IndirizzoComponent implements OnInit {
     return this.addressFormGroup;
   }
 */
+  //Torna true se siamo nella situazione di un componente popolato ma non tutti i componenti sono popolati ed uno dei componenti non popolati è quello in input
   checkAddressFieldMissing(fieldname: string): boolean {
     const error = this.addressFormGroup.getError('addressFieldMissing');
     return error && error[fieldname];
   }
 
-  checkAddressNotCompleted()
-  {
-    return  this.addressFormGroup.getError('addressFieldMissing');
+  //Torna true se siamo nella situazione di un componente popolato ma non tutti i componenti sono popolati
+  checkAddressNotCompleted() {
+    return this.addressFormGroup.getError('addressFieldMissing');
   }
 
+  //Validatore custom per campi indirizzo
   checkAddressField(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const firstFieldValue = control.get('via')?.value;
@@ -94,6 +96,8 @@ export class IndirizzoComponent implements OnInit {
             err['numero'] = true;
           }
 
+          //Non passo true ma un dizionario con [field : true] se il campo è assente
+          //Viene poi utilizzato nel metodo checkAddressFieldMissing
           return { addressFieldMissing: err };
         }
       }
@@ -101,6 +105,4 @@ export class IndirizzoComponent implements OnInit {
       return null; //Validazione superata
     };
   }
-
-
 }
