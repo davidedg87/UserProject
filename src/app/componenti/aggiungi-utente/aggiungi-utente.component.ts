@@ -6,11 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FakeApiService } from 'src/app/servizi/fake-api.service';
 import { PopupComponent } from '../popup/popup.component';
@@ -60,7 +56,7 @@ export class AggiungiUtenteComponent
       username: ['', Validators.required],
       telefono: ['', Validators.required],
       //indirizzo: this.indirizzoFormRef.createGroup(), //Creo sottogruppo indirizzo direttamente chiamando il componente
-      indirizzo : this.formBuilder.group({})
+      indirizzo: this.formBuilder.group({}),
     });
 
     this.form.valueChanges.subscribe((value) => {
@@ -108,25 +104,6 @@ export class AggiungiUtenteComponent
     this.form.reset();
   }
 
-  /*
-  //Funzioni di prova per verificare il bubbling degli eventi
-  toggle(){
-
-    if( this.form.get('nome')!.disabled)
-      this.form.get('nome')!.enable();
-    else
-    this.form.get('nome')!.disable({
-        //emitEvent : false --> Evito di emettere evento a seguito della modifica
-          onlySelf : true
-
-    });
-
-    this.form.updateValueAndValidity();
-
-
-  }
-*/
-
   openDialog(tipo: string, messaggio: string) {
     const dialogRef: MatDialogRef<PopupComponent> = this.dialog.open(
       PopupComponent,
@@ -150,8 +127,22 @@ export class AggiungiUtenteComponent
     return this.form.get('indirizzo') as FormGroup;
   }
 
-  getDomicilioFormGroup(): FormGroup {
-    return this.form.get('domicilio') as FormGroup;
-  }
+  /*
+  //Funzioni di prova per verificare il bubbling degli eventi
+  toggle(){
 
+    if( this.form.get('nome')!.disabled)
+      this.form.get('nome')!.enable();
+    else
+    this.form.get('nome')!.disable({
+        //emitEvent : false --> Evito di emettere evento a seguito della modifica
+          onlySelf : true
+
+    });
+
+    this.form.updateValueAndValidity();
+
+
+  }
+*/
 }

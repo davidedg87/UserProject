@@ -48,13 +48,10 @@
       </mat-form-field>
 
     </div>
-    <!--Vecchia versione in cui il formGroup dell'indirizzo si creava nel form principale e si passava tramite input-->
+
     <!-- Questa è la versione più corretta in quanto in questo modo la creazione del componente avviene sul figlio -->
     <app-indirizzo [addressFormGroup]="getIndirizzoFormGroup()"> </app-indirizzo>
 
-    <!--Nuova versione in cui il formGroup dell'indirizzo viene creato direttamente nel componente app-Indirizzo all'interno di una funzione
-    dedicata che viene richiamata dal componente principale-->
-    <!--<app-indirizzo> </app-indirizzo>-->
 
     <div class="form-actions">
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Salva</button>

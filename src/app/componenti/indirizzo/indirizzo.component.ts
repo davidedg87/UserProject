@@ -15,8 +15,7 @@ import {
   styleUrls: ['./indirizzo.component.css'],
 })
 export class IndirizzoComponent implements OnInit {
-  @Input() addressFormGroup!: FormGroup; // Non più utilizzato
-  //addressFormGroup!: FormGroup;
+  @Input() addressFormGroup!: FormGroup; // Quando viene creato sul padre viene sempre creato nuovo
 
   constructor(public formBuilder: FormBuilder) {
     //Inizializzazione formGroup vuoto
@@ -46,20 +45,6 @@ export class IndirizzoComponent implements OnInit {
     this.addressFormGroup.addValidators([this.checkAddressField()]); //Aggiunge senza sostituire
   }
 
-  /* Non più utilizzato. Il form viene creato vuoto nel padre e inizializzato direttamente nel figlio sull'OnInit
-  public createGroup() {
-    this.addressFormGroup = this.formBuilder.group(
-      {
-        via: [''],
-        citta: [''],
-        numero: [''],
-      },
-      { validators: [checkAddressField('via', 'citta', 'numero')] }
-    ); //Validatore custom per cui tutti e tre i campi sono obbligatori se almeno uno è valorizzato
-
-    return this.addressFormGroup;
-  }
-*/
   //Torna true se siamo nella situazione di un componente popolato ma non tutti i componenti sono popolati ed uno dei componenti non popolati è quello in input
   checkAddressFieldMissing(fieldname: string): boolean {
     const error = this.addressFormGroup.getError('addressFieldMissing');
@@ -105,4 +90,19 @@ export class IndirizzoComponent implements OnInit {
       return null; //Validazione superata
     };
   }
+
+  /* Non più utilizzato. Il form viene creato vuoto nel padre e inizializzato direttamente nel figlio sull'OnInit
+  public createGroup() {
+    this.addressFormGroup = this.formBuilder.group(
+      {
+        via: [''],
+        citta: [''],
+        numero: [''],
+      },
+      { validators: [checkAddressField('via', 'citta', 'numero')] }
+    ); //Validatore custom per cui tutti e tre i campi sono obbligatori se almeno uno è valorizzato
+
+    return this.addressFormGroup;
+  }
+*/
 }
