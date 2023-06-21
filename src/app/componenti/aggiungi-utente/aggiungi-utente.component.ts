@@ -59,7 +59,8 @@ export class AggiungiUtenteComponent
       email: ['', [Validators.required, Validators.email]],
       username: ['', Validators.required],
       telefono: ['', Validators.required],
-      indirizzo: this.indirizzoFormRef.createGroup(), //Creo sottogruppo indirizzo direttamente chiamando il componente
+      //indirizzo: this.indirizzoFormRef.createGroup(), //Creo sottogruppo indirizzo direttamente chiamando il componente
+      indirizzo : this.formBuilder.group({})
     });
 
     this.form.valueChanges.subscribe((value) => {
@@ -148,4 +149,9 @@ export class AggiungiUtenteComponent
   getIndirizzoFormGroup(): FormGroup {
     return this.form.get('indirizzo') as FormGroup;
   }
+
+  getDomicilioFormGroup(): FormGroup {
+    return this.form.get('domicilio') as FormGroup;
+  }
+
 }

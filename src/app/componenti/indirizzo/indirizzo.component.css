@@ -1,6 +1,10 @@
 
 @import '~bootstrap/dist/css/bootstrap.css';
 
+.required-star, .required-star::after {
+  color: red;
+}
+
 .required {
   color: red;
   font-weight: bold;
@@ -10,7 +14,10 @@
   color: red;
 }
 
-
+.required-gen-message {
+  margin-top: 20px;
+  color: red;
+}
 
 .required-star::after {
   content: "*";
